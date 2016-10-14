@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.Odbc;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace MyConnectionFactory
@@ -23,9 +19,13 @@ namespace MyConnectionFactory
             WriteLine("**** Very Simple Connection Factory *****\n");
             // Get a specific connection.
             IDbConnection myConnection = GetConnection(DataProvider.SqlServer);
+            WriteLine($"Your type is a {myConnection.GetType()}");
             WriteLine($"Your connection is a {myConnection.GetType().Name}");
             // Open, use and close connection...
             ReadLine();
+
+            string dataProviderString = ConfigurationManager.AppSettings["provider"];
+            DataProvider dataProvider = DataProvider.None;
         }
         // This method returns a specific connection object
         // based on the value of a DataProvider enum.
@@ -46,5 +46,7 @@ namespace MyConnectionFactory
             }
             return connection;
         }
+
+
     }
 }
