@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using static System.Console;
+using System.Data.SqlClient;
 
 namespace DataProviderFactory
 {
@@ -32,8 +33,14 @@ namespace DataProviderFactory
 
 
                 WriteLine($"Your connection object is a: {connection.GetType().Name}");
+
                 connection.ConnectionString = connectionString;
                 connection.Open();
+                var sqlConnection = connection as SqlConnection;
+                if (sqlConnection != null)
+                {
+                    WriteLine(sqlConnection.ServerVersion);
+                }
 
                 DbCommand command = factory.CreateCommand();
                 if (command == null)
