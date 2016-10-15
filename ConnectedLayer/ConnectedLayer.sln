@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviderFactory", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLotDataReader", "AutoLotDataReader\AutoLotDataReader.csproj", "{28CAFF61-B622-4FB3-8D9A-CF2575155ECA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionObjects", "ConnectionObjects\ConnectionObjects.csproj", "{F057935C-61E0-487B-9F3E-4AF95AA61BBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{28CAFF61-B622-4FB3-8D9A-CF2575155ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28CAFF61-B622-4FB3-8D9A-CF2575155ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28CAFF61-B622-4FB3-8D9A-CF2575155ECA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F057935C-61E0-487B-9F3E-4AF95AA61BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F057935C-61E0-487B-9F3E-4AF95AA61BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F057935C-61E0-487B-9F3E-4AF95AA61BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F057935C-61E0-487B-9F3E-4AF95AA61BBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
