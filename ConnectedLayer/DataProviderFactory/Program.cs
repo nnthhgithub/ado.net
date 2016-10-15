@@ -21,6 +21,7 @@ namespace DataProviderFactory
 
             string dataProvider = ConfigurationManager.AppSettings["provider"];
             string connectionString = ConfigurationManager.AppSettings["connectionString"];
+            string connectionString2 = ConfigurationManager.ConnectionStrings["AutoLotSqlProvider"].ConnectionString; //Also able to use ConnectionStrings as well as AppSettings
             DbProviderFactory factory = DbProviderFactories.GetFactory(dataProvider);
 
             using (DbConnection connection = factory.CreateConnection())
@@ -38,6 +39,15 @@ namespace DataProviderFactory
                 connection.Open();
                 var sqlConnection = connection as SqlConnection;
                 if (sqlConnection != null)
+                {
+                    WriteLine(sqlConnection.ServerVersion);
+                }
+                connection.Close();
+
+                connection.ConnectionString = connectionString2;
+                connection.Open();
+                var sqlConnection2 = connection as SqlConnection;
+                if (sqlConnection2 != null)
                 {
                     WriteLine(sqlConnection.ServerVersion);
                 }
