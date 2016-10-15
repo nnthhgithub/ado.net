@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.Odbc;
 using System.Data.OleDb;
@@ -13,7 +14,7 @@ namespace MyConnectionFactory
 
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             WriteLine("**** Very Simple Connection Factory *****\n");
@@ -26,6 +27,22 @@ namespace MyConnectionFactory
 
             string dataProviderString = ConfigurationManager.AppSettings["provider"];
             DataProvider dataProvider = DataProvider.None;
+            if (Enum.IsDefined(typeof(DataProvider), dataProviderString))
+            {
+                dataProvider = (DataProvider)Enum.Parse(typeof(DataProvider), dataProviderString);
+            }
+            else
+            {
+                WriteLine("Sorry, no provider exists!");
+                ReadLine();
+                return;
+            }
+
+            IDbConnection myConnection2 = GetConnection(dataProvider);
+
+            WriteLine($"Your connection is a {myConnection2?.GetType().Name ?? "unrecognized type"}");
+            // Open, use and close connection...
+            ReadLine();
         }
         // This method returns a specific connection object
         // based on the value of a DataProvider enum.
