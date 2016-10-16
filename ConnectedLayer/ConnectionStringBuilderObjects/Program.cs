@@ -26,6 +26,18 @@ namespace ConnectionStringBuilderObjects
                 ShowConnectionStatus(connection);
             }
             ReadLine();
+
+            string connectionString = @"Data Source=.\sqlexpress;Initial Catalog=AutoLot;Integrated Security=True";
+            SqlConnectionStringBuilder cnStringBuilder2 = new SqlConnectionStringBuilder(connectionString);
+            cnStringBuilder2.ConnectTimeout = 15;
+
+            using(SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = cnStringBuilder2.ConnectionString;
+                connection.Open();
+                ShowConnectionStatus(connection);
+            }
+            ReadLine();
         }
         public static void ShowConnectionStatus(SqlConnection connection)
         {
