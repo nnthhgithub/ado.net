@@ -12,11 +12,22 @@ namespace ConnectionObjects
     {
         static void Main(string[] args)
         {
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=AutoLot;Integrated Security=True";
+                connection.Open();
+                ShowConnectionStatus(connection);
+                connection.Close();
+                ShowConnectionStatus(connection);
+            }
         }
         public static void ShowConnectionStatus(SqlConnection connection)
         {
             WriteLine("Info about your connection");
-            WriteLine($"Database");
+            WriteLine($"Database location {connection.DataSource}");
+            WriteLine($"Database name {connection.Database}");
+            WriteLine($"Time out {connection.ConnectionTimeout}");
+            WriteLine($"Connection state {connection.State}");
         }
     }
 }
